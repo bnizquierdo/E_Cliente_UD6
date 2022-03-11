@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petición asíncrona</title>
+</head>
+<body>
+    <h1>Realizar petición</h1>
+
+    <script>
+        //Objeto XMLHttpRequest() con el nombre de la variable rep
+        var req = new XMLHttpRequest();
+        //Petición asíncrona
+        req.open('GET','https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest', true);
+        function respuestaHTTP(aEvt) {
+            if (req.readyState == 4) {
+                if(req.status == 200)
+                console.log(req.responseText);
+                
+                else
+                console.log("Peticion erronea");
+            }
+        };
+        req.onreadystatechange = respuestaHTTP;
+        
+        //Evento onload
+        req.onload = function () {
+            alert('Ya ha cargado el evento');
+        }
+        req.send(null);
+    </script>
+</body>
+</html>
